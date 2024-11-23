@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div>
-        <div><h1>Home screen Validation</h1></div>
+        <div><h1>screen authorized</h1></div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
