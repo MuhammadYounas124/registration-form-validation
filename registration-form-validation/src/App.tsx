@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import HomeScreen from "./components/HomeScreen";
-import LoginScreen from "./components/LoginScreen";
+import HomeScreen from "./HomeScreen";
+import LoginScreen from "./LoginScreen";
 
 const App = () => {
   return (
