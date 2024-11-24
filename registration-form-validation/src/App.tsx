@@ -94,7 +94,7 @@ const RegistrationForm = () => {
     setFormData({ ...formData, schoolId: e.target.value });
   };
 
-  const handleGenderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGenderChange = (e: React.ChangeEvent<HTMLInputElement |HTMLSelectElement >) => {
     setFormData({ ...formData, gender: e.target.value });
   };
 
