@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../public/dist/css/adminlte.min.css"; // Ensure the CSS file is correctly linked
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -215,7 +216,7 @@ const RegistrationForm = () => {
     setErrors(newErrors);
     return formIsValid;
   };
-
+  const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent) => {//handleSubmit Function
     //Triggered when the user submits the form.Prevents the default form submission behavior using e.preventDefault()
     //Calls validateForm:If validation succeeds:
@@ -224,6 +225,7 @@ const RegistrationForm = () => {
     //If validation fails:Logs "Form has errors." and displays error messages under the respective fields.
     e.preventDefault();
     if (validateForm()) {
+      navigate("/home", { state: formData });
       console.log("Form submitted successfully with data: ", formData);
     } else {
       console.log("Form has errors.");
