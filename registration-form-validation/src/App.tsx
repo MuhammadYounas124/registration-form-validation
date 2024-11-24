@@ -216,8 +216,9 @@ const RegistrationForm = () => {
     setErrors(newErrors);
     return formIsValid;
   };
-  const navigate = useNavigate();
+  
   const handleSubmit = (e: React.FormEvent) => {//handleSubmit Function
+    const navigate = useNavigate();
     //Triggered when the user submits the form.Prevents the default form submission behavior using e.preventDefault()
     //Calls validateForm:If validation succeeds:
     //Logs the formData to the console.
@@ -225,7 +226,7 @@ const RegistrationForm = () => {
     //If validation fails:Logs "Form has errors." and displays error messages under the respective fields.
     e.preventDefault();
     if (validateForm()) {
-      navigate("/home", { state: formData });
+      navigate("/Home", { state: formData });
       console.log("Form submitted successfully with data: ", formData);
     } else {
       console.log("Form has errors.");
@@ -234,7 +235,7 @@ const RegistrationForm = () => {
 
   return (
     <div style={{ background: "linear-gradient(to right, #ff7e5f, #feb47b)", minHeight: "100vh" }}>
-      <form onSubmit={handleSubmit} className="container mt-4 p-4 rounded shadow-sm" style={{ maxWidth: "600px", backgroundColor: "#fff" }}>
+      <form onSubmit={handleSubmit}className="container mt-4 p-4 rounded shadow-sm" style={{ maxWidth: "600px", backgroundColor: "#fff" }}>
         <div className="mb-3">
           <label className="form-label">First Name</label>
           <input
