@@ -39,11 +39,20 @@ const RegistrationForm = () => {
   });
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //These are event handlers used to update the formData state when users interact with input fields.
+    //Each handler is specific to a field and updates its corresponding value in the formData object using the setFormData function.
     setFormData({ ...formData, firstName: e.target.value });
+
+    //When the user types in the firstName field, this function updates formData.
+    //firstName with the new value from the input field (e.target.value)//React’s controlled components pattern uses 
+    //e.target.value to capture user input and update the state dynamically.
   };
 
   const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, lastName: e.target.value });
+    setFormData({ ...formData, lastName: e.target.value }); //e.target.value e(means the event object which 
+    //contained detailed about event)triiged(thehtml element that trigged the event)
+    //The current value of the form element (like an <input>, <textarea>, or <select>).
+
   };
 
   const handleGraduationYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,15 +116,19 @@ const RegistrationForm = () => {
     let newErrors = { ...errors };
 
     // Add validation for all fields
-    if (!formData.firstName) {
-      newErrors.firstName = "First Name is required";
-      formIsValid = false;
+    if (!formData.firstName) {//Initializes a formIsValid flag as true.
+      newErrors.firstName = "First Name is required";// Creates a newErrors object to store validation error messages for each field.
+      formIsValid = false;//Updates the errors state with newErrors.
+      //Returns formIsValid:
+      //true: If all validations pass.
+     // false: If any field fails validation.
     } else {
       newErrors.firstName = "";
     }
 
-    if (!formData.lastName) {
-      newErrors.lastName = "Last Name is required";
+    if (!formData.lastName) { // If a field is empty or invalid, the corresponding error message is added to newErrors,
+      // and formIsValid is set to false.If valid, the error message for the field is cleared.
+      newErrors.lastName = "Last Name is required"; 
       formIsValid = false;
     } else {
       newErrors.lastName = "";
@@ -128,7 +141,7 @@ const RegistrationForm = () => {
       newErrors.graduationYear = "";
     }
 
-    if (!formData.streetAddress) {
+    if (!formData.streetAddress) {// Text Inputs (firstName, lastName, streetAddress, etc.): Validates non-emptiness.
       newErrors.streetAddress = "Street Address is required";
       formIsValid = false;
     } else {
@@ -171,7 +184,8 @@ const RegistrationForm = () => {
     }
 
     if (!formData.phonePart1 || !formData.phonePart2 || !formData.phonePart3) {
-      newErrors.phone = "Phone number is incomplete";
+      newErrors.phone = "Phone number is incomplete";//Phone Number (phonePart1, phonePart2, phonePart3):
+      //Validates that all three parts are filled in.Combines the error for all parts into a single message (newErrors.phone).
       formIsValid = false;
     } else {
       newErrors.phone = "";
@@ -187,14 +201,14 @@ const RegistrationForm = () => {
     if (!formData.gender) {
       newErrors.gender = "Gender is required";
       formIsValid = false;
-    } else {
+    } else {//Dropdown (gender):Validates that the user selects a value other than the default empty value ("").
       newErrors.gender = "";
     }
 
     if (!formData.isAgree) {
       newErrors.isAgree = "You must agree to the terms";
       formIsValid = false;
-    } else {
+    } else { //Checkbox (isAgree):Validates that the checkbox is checked before allowing submission.
       newErrors.isAgree = "";
     }
 
@@ -202,7 +216,12 @@ const RegistrationForm = () => {
     return formIsValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {//handleSubmit Function
+    //Triggered when the user submits the form.Prevents the default form submission behavior using e.preventDefault()
+    //Calls validateForm:If validation succeeds:
+    //Logs the formData to the console.
+    //In a real-world app, this is where you would send the form data to an API.
+    //If validation fails:Logs "Form has errors." and displays error messages under the respective fields.
     e.preventDefault();
     if (validateForm()) {
       console.log("Form submitted successfully with data: ", formData);
@@ -222,6 +241,8 @@ const RegistrationForm = () => {
             name="firstName"
             value={formData.firstName}
             onChange={handleFirstNameChange}
+            //is a conditional rendering statement in React, used to dynamically 
+            //display an error message when a validation error for the lastName field exists.
           />
           {errors.firstName && <div className="text-danger">{errors.firstName}</div>}
         </div>
@@ -235,7 +256,9 @@ const RegistrationForm = () => {
             value={formData.lastName}
             onChange={handleLastNameChange}
           />
-          {errors.lastName && <div className="text-danger">{errors.lastName}</div>}
+          {errors.lastName &&/* In JavaScript, && is a logical operator that evaluates the left-hand side first.*/
+           <div className="text-danger">
+          {errors.lastName/*Dynamically displays the error message string stored in errors.lastName.*/}</div>}
         </div>
 
         <div className="mb-3">
