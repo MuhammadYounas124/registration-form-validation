@@ -1,25 +1,27 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
+interface LocationState {
+  email?: string;
+}
+
 const HomeScreen = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation<LocationState>();
+  const navigate = useNavigate();  // Add the navigate hook here
+  const { state } = location;
+  const email = state?.email || 'Guest';
 
-  // Access email from the location state
-  const { email } = location.state || {};
-
-  // Define dummy data for the user (for demonstration purposes)
   const userData = {
-    name: 'John Doe', // Replace with actual name if fetched from backend
-    email: email || 'N/A',
+    name: 'John Doe',  // Consider making this dynamic
+    email,
     phone: '123-456-7890',
     address: '123 Main Street, Springfield',
     dob: '01-01-1990',
-    gender: 'Male', // Adjust as needed
+    gender: 'Male',
   };
 
-  // Define the logout function to navigate back to login
   const logout = () => {
-    navigate('/login');
+    sessionStorage.removeItem('authToken');
+    navigate('/login');  // Use navigate to redirect to login page
   };
 
   return (
@@ -36,4 +38,3 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
-
