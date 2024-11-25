@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../public/dist/css/adminlte.min.css"; // Ensure the CSS file is correctly linked
 import { useNavigate } from "react-router-dom";
 
-
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     firstName: "",
