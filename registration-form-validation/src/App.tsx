@@ -421,6 +421,7 @@ const RegistrationForm = () => {
              </select>
            {errors.gender && <div className="text-danger">{errors.gender}</div>}
             </div>
+            
 
 
         <div className="mb-3 form-check">
