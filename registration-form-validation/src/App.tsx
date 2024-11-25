@@ -39,7 +39,8 @@ const RegistrationForm = () => {
     gender: "",
   });
 
-  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    
     //These are event handlers used to update the formData state when users interact with input fields.
     //Each handler is specific to a field and updates its corresponding value in the formData object using the setFormData function.
     setFormData({ ...formData, firstName: e.target.value });
@@ -115,7 +116,6 @@ const RegistrationForm = () => {
   const validateForm = (): boolean => {
     let formIsValid = true;
     let newErrors = { ...errors };
-
     // Add validation for all fields
     if (!formData.firstName) {//Initializes a formIsValid flag as true.
       newErrors.firstName = "First Name is required";// Creates a newErrors object to store validation error messages for each field.
@@ -214,27 +214,31 @@ const RegistrationForm = () => {
     }
 
     setErrors(newErrors);
-    return formIsValid;
+    return formIsValid; 
   };
-  const navigate = useNavigate();
-  const handleSubmit = (e: React.FormEvent) => {//handleSubmit Function
+  
+  const handleSubmit = (e: React.FormEvent) => 
+    {//handleSubmit Function
     //Triggered when the user submits the form.Prevents the default form submission behavior using e.preventDefault()
     //Calls validateForm:If validation succeeds:
     //Logs the formData to the console.
     //In a real-world app, this is where you would send the form data to an API.
     //If validation fails:Logs "Form has errors." and displays error messages under the respective fields.
-    e.preventDefault();
+    e.preventDefault(); // Prevent form from refreshing the page
     if (validateForm()) {
-      navigate("/home", { state: formData });
+      const navigate = useNavigate();
+      navigate("/HomeScreen", { state: formData });
       console.log("Form submitted successfully with data: ", formData);
     } else {
       console.log("Form has errors.");
-    }
+    
+  }
   };
+
 
   return (
     <div style={{ background: "linear-gradient(to right, #ff7e5f, #feb47b)", minHeight: "100vh" }}>
-      <form onSubmit={handleSubmit} className="container mt-4 p-4 rounded shadow-sm" style={{ maxWidth: "600px", backgroundColor: "#fff" }}>
+      <form className="container mt-4 p-4 rounded shadow-sm" style={{ maxWidth: "600px", backgroundColor: "#fff" }}>
         <div className="mb-3">
           <label className="form-label">First Name</label>
           <input
@@ -438,7 +442,7 @@ const RegistrationForm = () => {
           {errors.isAgree && <div className="text-danger">{errors.isAgree}</div>}
         </div>
 
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" onClick={handleSubmit} className="btn btn-primary">Submit</button>
       </form>
     </div>
   );
