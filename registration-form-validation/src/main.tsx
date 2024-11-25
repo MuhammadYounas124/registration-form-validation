@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomeScreen from './HomeScreen';
 import Login from './LoginScreen';
 import RegistrationForm from './App';
-//import './index.css';
+// import './index.css';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
@@ -12,9 +12,11 @@ if (rootElement) {
       <Routes>
         <Route path="/" element={<RegistrationForm />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/HomeScreen" element={<HomeScreen />} />  {/* Ensure this route is correct */}
+        <Route path="/homescreen" element={<HomeScreen />} />
       </Routes>
     </BrowserRouter>
   );
 }
+
+
 

@@ -3,6 +3,7 @@ import "../public/dist/css/adminlte.min.css"; // Ensure the CSS file is correctl
 import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -226,7 +227,6 @@ const RegistrationForm = () => {
     //If validation fails:Logs "Form has errors." and displays error messages under the respective fields.
     e.preventDefault(); // Prevent form from refreshing the page
     if (validateForm()) {
-      const navigate = useNavigate();
       navigate("/HomeScreen", { state: formData });
       console.log("Form submitted successfully with data: ", formData);
     } else {
