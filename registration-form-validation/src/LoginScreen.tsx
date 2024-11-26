@@ -12,8 +12,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
-    onLogin(email); // Trigger the onLogin prop if needed
-    navigate('/HomeScreen', { state: { email } }); // Pass the state to HomeScreen
+    onLogin(email); // Trigger the onLogin prop
+    navigate('/homescreen', { state: { email } }); // Pass email to HomeScreen
   };
 
   return (
